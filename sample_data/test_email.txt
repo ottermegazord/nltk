@@ -1,0 +1,10 @@
+To: idaly.ali@smart.mit.edu
+From: stefan@smart.mit.edu
+X-FileName:
+
+Hi Idaly,
+
+I remember the batteries in the budgeting are based on the price on RS website, plus around 20% buffer. The voltage and Ah should be the same as the one in the jungle.
+
+Regards,
+Stefan
