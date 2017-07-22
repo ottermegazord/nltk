@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import nltk
 from nltk.stem.snowball import SnowballStemmer
 import string
 
@@ -7,15 +8,9 @@ import string
 def parseOutText(f):
     """ given an opened email file f, parse out all text below the
         metadata block at the top
-        (in Part 2, you will also add stemming capabilities)
-        and return a string that contains all the words
-        in the email (space-separated)
-
-        example use case:
-        f = open("email_file_name.txt", "r")
-        text = parseOutText(f)
-
         """
+
+    stemmer = SnowballStemmer("english")
 
     f.seek(0)  ### go back to beginning of file (annoying)
     all_text = f.read()
@@ -28,11 +23,28 @@ def parseOutText(f):
         text_string = content[1].translate(string.maketrans("", ""), string.punctuation)
 
         ### project part 2: comment out the line below
-        words = text_string
+        ### splits sentence into words
+        sentence = nltk.sent_tokenize(text_string)
+
+        stemmedSentence = []
+        tokenizedSentence = []
+
+        for word in sentence:
+            tokenizedSentence = nltk.word_tokenize(word)
+
+        for word in tokenizedSentence:
+            stemmedSentence.append(stemmer.stem(word))
 
         ### split the text string into individual words, stem each word,
         ### and append the stemmed word to words (make sure there's a single
         ### space between each stemmed word)
+
+        for i in range(0, len(stemmedSentence)):
+            if i == 0:
+                words = stemmedSentence[i]
+
+            else:
+                words = words + " " + stemmedSentence[i]
 
     return words
 
